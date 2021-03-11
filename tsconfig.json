@@ -5,7 +5,8 @@
     "outDir": "./lib/",                 
     "strict": true,                      
     "esModuleInterop": true,              
-    "skipLibCheck": true,                  
+    "skipLibCheck": true,
+    "downlevelIteration": true,
     "forceConsistentCasingInFileNames": true
   }
 }

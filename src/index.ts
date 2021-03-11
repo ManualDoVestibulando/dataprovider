@@ -17,3 +17,15 @@ export const getNotas = async (
   notas = parseDataset(dataset);
   return notas;
 };
+
+export const getCursos = (notas: Pick<NotaFuvest, "unidade" | "curso">[]) => {
+  const unidades = new Set(notas.map((n) => n.unidade));
+  const acc: Map<string, string[]> = new Map();
+  for (const unidade of unidades) {
+    const cursos = new Set(
+      notas.filter((n) => n.unidade == unidade).map((n) => n.curso)
+    );
+    acc.set(unidade, Array.from(cursos));
+  }
+  return acc;
+};
