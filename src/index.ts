@@ -17,8 +17,3 @@ export const getNotas = async (
   notas = parseDataset(dataset);
   return notas;
 };
-
-(async function () {
-  const notas = await getNotas();
-  console.log(notas);
-})();
