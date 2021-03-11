@@ -1,4 +1,6 @@
 {
+  "name": "dataprovider-manualdovestibulando",
+  "version": "1.0.0",
   "scripts": {
     "start": "tsc && node .build/index.js"
   },
