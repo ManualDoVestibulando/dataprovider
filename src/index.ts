@@ -1,4 +1,4 @@
-import { NotaFuvest } from "core/entity/NotaFuvest";
+import { NotaFuvest } from "core/src/NotaFuvest";
 import { saveDatabaseZipped, readDatabaseZipped, parseDataset } from "./util";
 
 let notas: {

@@ -2,7 +2,7 @@ import axios from "axios";
 import fs from "fs";
 import streamZip from "node-stream-zip";
 import { extname } from "path";
-import { NotaFuvest } from "core/entity/NotaFuvest";
+import { NotaFuvest } from "core/src/NotaFuvest";
 
 const url = "https://github.com/ManualDoVestibulando/data/archive/main.zip";
 
