@@ -39,7 +39,7 @@ concat-map@0.0.1:
 
 "core@https://github.com/ManualDoVestibulando/core":
   version "1.0.0"
-  resolved "https://github.com/ManualDoVestibulando/core#38fe67f53474207eceef79a7ba9e9e6626088831"
+  resolved "https://github.com/ManualDoVestibulando/core#b62eb534ec0e238b8b0107199f36361b37e1f7f5"
 
 follow-redirects@^1.10.0:
   version "1.13.3"
