@@ -13,7 +13,3 @@ export const getData = async (
   notas = await getDatabase(path);
   return notas;
 };
-
-(async function () {
-  console.log(await getData());
-})();
