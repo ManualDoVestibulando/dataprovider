@@ -11,6 +11,8 @@ import {
 } from "core/src/Entity";
 import { promisify } from "util";
 
+const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
 const url = "https://github.com/ManualDoVestibulando/data/archive/main.zip";
 
 export const downloadDatabaseZipped = async (filepath: string) => {
@@ -103,5 +105,6 @@ export const parseDatabase = async (
 export const getDatabase = async (filepath: string) => {
   await downloadDatabaseZipped(filepath + ".zip");
   await extractDatabase(filepath);
+  await sleep(2000);
   return await parseDatabase(filepath);
 };
