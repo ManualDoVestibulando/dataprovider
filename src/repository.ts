@@ -16,7 +16,7 @@ export const downloadDatabaseZipped = async (filepath: string) => {
   if (fs.existsSync(filepath)) {
     return;
   }
-
+  console.log("> Baixando banco de dados em ", filepath);
   const response = await axios.get(url, {
     responseType: "stream",
   });
@@ -33,24 +33,19 @@ export const extractDatabase = async (filepath: string) => {
   if (fs.existsSync(filepath)) {
     return;
   }
-
+  console.log("> Extrandido banco de dados em ", filepath);
   fs.mkdirSync(filepath);
   const zip = new streamZip.async({ file: filepath + ".zip" });
-  await zip.extract("data-main/", filepath);
+  await zip.extract("data-main/filetree/", filepath);
   await zip.close();
 };
 
 const readFile = promisify(fs.readFile);
-const readFileAndParse = async (filepath: string) => {
-  console.log(filepath);
-  return readFile(filepath)
+const readFileAndParse = async (filepath: string) =>
+  readFile(filepath)
     .then((c) => c.toString())
     .then(JSON.parse);
-};
-const pathIsDir = (filepath: string) => {
-  console.log(filepath);
-  return fs.lstatSync(filepath).isDirectory();
-};
+const pathIsDir = (filepath: string) => fs.lstatSync(filepath).isDirectory();
 const pathList = (filepath: string) =>
   fs.readdirSync(filepath).map((f) => pathjoin(filepath, f));
 const pathListDirs = (filepath: string) => pathList(filepath).filter(pathIsDir);
