@@ -3,6 +3,7 @@ import fs from "fs";
 import streamZip from "node-stream-zip";
 import { join as pathjoin } from "path";
 import {
+  CampusEntity,
   CursoEntity,
   InstitutoEntity,
   ManualDoVestibulandoEntity,
@@ -46,8 +47,12 @@ const readFileAndParse = async (filepath: string) =>
     .then((c) => c.toString())
     .then(JSON.parse);
 const pathIsDir = (filepath: string) => fs.lstatSync(filepath).isDirectory();
-const pathList = (filepath: string) =>
-  fs.readdirSync(filepath).map((f) => pathjoin(filepath, f));
+const pathList = (filepath: string) => {
+  if (!fs.existsSync(filepath)) {
+    return [];
+  }
+  return fs.readdirSync(filepath).map((f) => pathjoin(filepath, f));
+};
 const pathListDirs = (filepath: string) => pathList(filepath).filter(pathIsDir);
 const readFileAndParseIndex = (filepath: string) =>
   readFileAndParse(pathjoin(filepath, "index.json"));
@@ -70,19 +75,24 @@ export const parseDatabase = async (
 ): Promise<ManualDoVestibulandoEntity> => {
   return {
     ...(await readFileAndParseIndex(filepath)),
-    institutos: await pathListDirs(filepath).mapAwait<InstitutoEntity>(
-      async (institutopath) => ({
-        ...(await readFileAndParseIndex(institutopath)),
-        cursos: await pathListDirs(institutopath).mapAwait<CursoEntity>(
-          async (cursopath) => ({
-            ...(await readFileAndParseIndex(cursopath)),
-            notas: {
-              fuvest: await pathList(
-                pathjoin(cursopath, "notas", "fuvest")
-              ).mapAwait<NotaFuvestEntity>((fuvestpath) =>
-                readFileAndParse(fuvestpath)
-              ),
-            },
+    campus: await pathListDirs(filepath).mapAwait<CampusEntity>(
+      async (campuspath) => ({
+        ...(await readFileAndParseIndex(campuspath)),
+        institutos: await pathListDirs(campuspath).mapAwait<InstitutoEntity>(
+          async (institutopath) => ({
+            ...(await readFileAndParseIndex(institutopath)),
+            cursos: await pathListDirs(institutopath).mapAwait<CursoEntity>(
+              async (cursopath) => ({
+                ...(await readFileAndParseIndex(cursopath)),
+                notas: {
+                  fuvest: await pathList(
+                    pathjoin(cursopath, "notas", "fuvest")
+                  ).mapAwait<NotaFuvestEntity>((fuvestpath) =>
+                    readFileAndParse(fuvestpath)
+                  ),
+                },
+              })
+            ),
           })
         ),
       })

@@ -3,9 +3,9 @@
 
 
 "@types/node@^14.14.32":
-  version "14.14.33"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.14.33.tgz#9e4f8c64345522e4e8ce77b334a8aaa64e2b6c78"
-  integrity sha512-oJqcTrgPUF29oUP8AsUqbXGJNuPutsetaa9kTQAQce5Lx5dTYWV02ScBiT/k1BX/Z7pKeqedmvp39Wu4zR7N7g==
+  version "14.14.34"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.14.34.tgz#07935194fc049069a1c56c0c274265abeddf88da"
+  integrity sha512-dBPaxocOK6UVyvhbnpFIj2W+S+1cBTkHQbFQfeeJhoKFbzYcVUGHvddeWPSucKATb3F0+pgDq0i6ghEaZjsugA==
 
 "@types/tmp@^0.2.0":
   version "0.2.0"
@@ -39,7 +39,7 @@ concat-map@0.0.1:
 
 "core@https://github.com/ManualDoVestibulando/core":
   version "1.0.0"
-  resolved "https://github.com/ManualDoVestibulando/core#b62eb534ec0e238b8b0107199f36361b37e1f7f5"
+  resolved "https://github.com/ManualDoVestibulando/core#68c7325dfbcf09a8cdc37a6e6d1ea1dd765249a5"
 
 follow-redirects@^1.10.0:
   version "1.13.3"

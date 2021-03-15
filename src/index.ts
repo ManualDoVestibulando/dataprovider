@@ -14,7 +14,9 @@ export const getData = async (
   return notas;
 };
 
+/*
 (async () => {
   const data = await getData();
-  console.log(data);
+  console.log(JSON.stringify(data));
 })();
+*/
