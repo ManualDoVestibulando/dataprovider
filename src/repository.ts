@@ -92,6 +92,11 @@ export const parseDatabase = async (
                   ).mapAwait<NotaFuvestEntity>((fuvestpath) =>
                     readFileAndParse(fuvestpath)
                   ),
+                  enem: await pathList(
+                    pathjoin(cursopath, "notas", "enem")
+                  ).mapAwait<NotaFuvestEntity>((fuvestpath) =>
+                    readFileAndParse(fuvestpath)
+                  ),
                 },
               })
             ),
